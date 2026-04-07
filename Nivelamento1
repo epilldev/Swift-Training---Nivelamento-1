@@ -1,0 +1,247 @@
+//ATIVIDADES 
+//Condicional e estrutura de escolha
+
+// 1 - Peça um nome, idade e cidade, concatene em uma frase.
+
+var nome: String
+var idade: Int
+var nomeCidade: String
+
+print("Digite seu nome: ")
+nome = readLine() ?? "Desconhecido"
+print("Digite sua idade: ")
+idade = readLine().flatMap(Int.init) ?? 0
+print("Digite o nome da sua cidade: ")
+nomeCidade = readLine() ?? "Nao informada"
+
+
+print("O seu nome é: \(nome)" + " e você tem: \(idade) anos" + " e mora na cidade de: \(nomeCidade)")
+
+
+// 2- Peça dois números inteiros. Se forem iguais, exiba a soma, caso contrário, exiba a multiplicação.
+
+var numero1: Int
+var numero2: Int
+
+print("Digite o primeiro número: ")
+numero1 = Int(readLine()!)!
+
+print("Digite o segundo número: ")
+numero2 = Int(readLine()!)!
+
+if numero1 == numero2 {
+    print("A soma dos números é: \(numero1 + numero2)")
+}else{
+    print("A multiplicacao dos numeros é: \(numero1 * numero2)")
+}
+
+// 3 - Informe um ano, retorne se é bisexto ou não. 
+
+var ano: Int
+
+print("Digite o ano que deseja: ")
+ano = readLine().flatMap(Int.init) ?? 0
+
+if (ano % 4  == 0) && (ano % 100 != 0) || (ano % 400 == 0){
+    print("O ano \(ano) é bissexto")
+}else{
+    print("O ano \(ano) nao é bissexto")
+}
+
+// 4. Deverá ser pedido três números inteiros distintos. Retorne qual deles é o menor.
+
+var numero1: Int
+var numero2: Int
+var numero3: Int
+
+var numeroMenor: Int
+
+
+print("Digite o primeiro valor: ")
+numero1 = readLine().flatMap(Int.init) ?? 0
+
+print("Digite o primeiro valor: ")
+numero2 = readLine().flatMap(Int.init) ?? 0
+
+print("Digite o primeiro valor: ")
+numero3 = readLine().flatMap(Int.init) ?? 0
+
+
+if (numero1 < numero2) && (numero1 < numero3) {
+    numeroMenor = numero1
+}else if (numero2 < numero1) && (numero2 < numero3) {
+    numeroMenor = numero2
+}else{
+    numeroMenor = numero3
+}
+
+print("O menor número é o numero \(numeroMenor)")
+
+// 5. Peça um número inteiro. Retorne o sucessor e o antecessor.
+
+var numeroEscolhido: Int 
+
+print("Digite o número escolhido: ")
+numeroEscolhido = readLine().flatMap(Int.init) ?? 0
+
+print("O número escolhido foi \(numeroEscolhido) e seu antecessor é \(numeroEscolhido - 1) e seu sucessor 
+é \(numeroEscolhido + 1)  ")
+
+
+// 6. Peça um número inteiro. Retorne a tabuada daquele valor.
+var numeroEscolhido: Int
+
+print("Digite o número da tabuada que deseja gerar: ")
+numeroEscolhido = readLine().flatMap(Int.init) ?? 0
+
+numeroEscolhido = 8
+
+for i in 1...10 {
+    print("Tabuada de \(numeroEscolhido) x \(i) = \(numeroEscolhido * i)")
+}
+
+
+// 7 - Peça diversos nomes (não há uma quantidade definida), o laço finaliza quando informado o termo sair. 
+// Exiba a quantidade de nomes registrados.
+
+import Foundation
+
+var nomesEscolhido: [String] = []
+var contador: Int = 0
+var nomes: String
+var habilitador: Bool = true
+
+repeat{
+    
+    print("Digite os nomes escolhidos")
+    nomes = readLine() ?? ""
+    if(nomes == "break"){
+        habilitador = false
+    }else{
+        nomesEscolhido.append(nomes)
+        
+        contador += 1
+    }
+
+
+}while (habilitador)
+
+// 8 - Será pedido um nome e duas notas, enquanto o nome for diferente de sair, peça esses dados. 
+// Ao finalizar o laço de repetição, exiba o nome e a média do aluno com maior média.
+
+
+import Foundation
+
+var registroAlunos: [(nome: String, nota1: Double, nota2: Double, media: Double)] = []
+var nomeAluno: String = ""
+var maiorMedia: Double = 0
+
+
+var habilitador: Bool = true
+
+
+
+repeat{
+    
+    print("Digite o nome do aluno: ")
+    var nome: String = readLine() ?? ""
+    
+    if (nome != "sair") {
+        
+        print("Digite a primeira nota: ")
+        var nota1: Double = Double(readLine() ?? "0") ?? 0
+        
+        print("Digite a segunda nota: ")
+        var nota2: Double = Double(readLine() ?? "0") ?? 0
+        
+        var media: Double = (nota1 + nota2) / 2
+        
+        registroAlunos.append((nome, nota1, nota2, media))
+    }else{
+        habilitador = false
+    }
+    
+    
+}while(habilitador)
+
+for aluno in registroAlunos{
+    if (aluno.media > maiorMedia){
+        maiorMedia = aluno.media
+        nomeAluno = aluno.nome
+    }
+}
+
+print("O nome do aluno com a maior nota é: \(nomeAluno) e a media dele foi de: \(maiorMedia)")
+
+
+//9. O usuário informa dois números. Percorre os números informados e exiba:
+// a. Quantidade de números informados;
+// b. Quantidade de pares;
+// c. Quantidade de ímpares;
+// d. Média geral dos valores informados.
+
+
+var listaNumeros: [(numero1: Double, numero2: Double)] = []
+var contadorPares: Int = 0
+var contadorImpares: Int = 0
+var mediaNumeros: Double = 0
+var contadorNumeros: Int = 0
+var somaNumeros: Double = 0
+
+
+print("Digite o primeiro numero: ")
+var primeiroNumero: Int = Int(readLine() ?? "0") ?? 0
+
+print("Digite o segundo numero: ")
+var segundoNumero: Int = Int(readLine() ?? "0") ?? 0
+
+for i in primeiroNumero...segundoNumero{
+   
+    somaNumeros += Double(i)
+    contadorNumeros += 1
+    
+    if(i % 2 == 0){
+        contadorPares += 1
+    }else{
+        contadorImpares += 1
+    }
+    mediaNumeros = somaNumeros / Double(contadorNumeros)
+    }
+
+print("Existem \(contadorNumeros) números percorridos entre \(primeiroNumero) e \(segundoNumero) e \(contadorPares) sao pares e \(contadorImpares) são ímpares e a média é \(mediaNumeros)")
+
+
+//10. Peça cinco números distintos. Exiba-os em ordem crescente.
+
+var numeroAleatorios: [Double] = []
+
+for i in 1...5 {
+    print("Digite o \(i)º número: ")
+       numeroAleatorios.append((Double(readLine() ?? "0") ?? 0))
+}
+
+print(numeroAleatorios.sorted())
+
+
+//11. Desenvolva um sistema de agenda, vamos trabalhar com: nome, e-mail e telefone. 
+// O sistema deverá ter as seguintes funcionalidades:
+//a. Cadastrar;
+//b. Listar;
+//c. Remover.
+
+
+
+//12. Peça cinco nomes e exiba-os. Não poderá haver nomes com repetição, realize uma validação.
+var listaNomes: [String] = []
+var i: Int = 1
+repeat{
+    print("Digite o \(i)º nome: ")
+    var numero: String = readLine() ?? ""
+    if !listaNomes.contains(numero){
+        listaNomes.append(numero)
+        i += 1
+    }else{
+        print("Nome já cadastrado!")
+    }
+}while(i != 6)
+print(listaNomes)
