@@ -223,12 +223,78 @@ for i in 1...5 {
 print(numeroAleatorios.sorted())
 
 
-//11. Desenvolva um sistema de agenda, vamos trabalhar com: nome, e-mail e telefone. 
+//11. Desenvolva um sistema de agenda, vamos trabalhar com: nome, e-mail e telefone.
 // O sistema deverá ter as seguintes funcionalidades:
 //a. Cadastrar;
 //b. Listar;
 //c. Remover.
-
+struct Registro {
+    var nome: String
+    var email: String
+    var telefone: String
+}
+var registros: [Registro] = []
+var habilitadora = true
+var opcao: String = ""
+repeat {
+    print("""
+        
+        ===== MENU =====
+        1 - Cadastrar nome
+        2 - Listar nomes
+        3 - Remover nome
+        0 - Sair
+        =================
+        Escolha uma opção:
+        """)
+    opcao = readLine() ?? ""
+    
+    switch opcao {
+        
+    case "0":
+        print("Saindo...")
+        habilitadora = false
+        
+    case "1":
+        // Cadastro
+        print("Nome:", terminator: " ")
+        let nome = readLine() ?? ""
+        
+        print("Email:", terminator: " ")
+        let email = readLine() ?? ""
+        
+        print("Telefone:", terminator: " ")
+        let telefone = readLine() ?? ""
+        
+        
+        let novoRegistro = Registro(nome: nome, email: email, telefone: telefone)
+        
+        
+        registros.append(novoRegistro)
+        
+        
+    case "2":
+        
+        for (i, p) in registros.enumerated() {
+            print("Nome: \(i) - \(p.nome) | Email: \(p.email) | Telefone: \(p.telefone)")
+        }
+    case "3":
+        print("Digite o nome que deseja remover: ", terminator: " ")
+        let nomeDigitado = readLine() ?? ""
+        
+        for (i, p) in registros.enumerated() {
+            if p.nome == nomeDigitado {
+                registros.remove(at: i)
+            }
+        }
+        print("Registro excluído com sucesso!")
+        
+    default:
+        print("OPÇAO INVÁLIDA, TENTE NOVAMENTE!")
+    }
+    
+    
+}while habilitadora == true
 
 
 //12. Peça cinco nomes e exiba-os. Não poderá haver nomes com repetição, realize uma validação.
@@ -243,5 +309,5 @@ repeat{
     }else{
         print("Nome já cadastrado!")
     }
-}while(i != 6)
+}while(i != 5)
 print(listaNomes)
